@@ -1,0 +1,95 @@
+/*
+Programador.......: (C) Afonso Cardoso
+Data..............: 11/12/2024
+Obeservações......: semáforo
+*    			
+*
+*/
+
+//Constantes
+const int BAUD_RATE = 9600;
+
+const int AMARELO_LED = 12;
+const int VERDE_LED = 13;
+const int VERMELHO_LED = 11;
+
+const int ESTADO_INICIALIZACAO_SEMAFORO = 0;
+const int ESTADO_TESTE_SEMAFORO = 1;
+const int ESTADO_ACENDER_VERMELHO = 2;
+const int ESTADO_ACENDER_AMARELO = 3;
+const int ESTADO_ACENDER_VERDE = 4;
+
+
+
+//variaveis
+byte estadoAtual;
+byte contador
+  
+void setup(void)
+  serial.begin(BAUD_RATE);
+
+estadoAtual = ESTADO_INICIALIZACAO_SEMAFORO;
+
+Serial.println("inicialização dos pinos...");
+
+	
+	pinMode (AMARELO_LED,OUTPUT);
+  	pinMode (VERMELHO_LED,OUTPUT);
+  	pinMode (VERDE_LED,OUTPUT);
+
+contador = 1;
+
+
+
+void loop() {
+  switch(estadoAtual)
+    case ESTADO_INICIALIZACAO_SEMAFORO:
+ digitalWrite(VERDE_LED, LOW);
+  digitalWrite(AMARELO_LED, LOW);
+  digitalWrite(VERMELHO_LED, LOW);
+  delay(2000);
+  
+  estadoAtual = ESTADO_TESTE_SEMAFORO;
+  break;
+}
+case ESTADO_TESTE_SEMAFORO:  {
+  if(contador++ <= 3) {
+    digitalWrite(AMARELO_LED, HIGH);
+  digitalWrite(VERMELHO_LED, HIGH);
+  digitalWrite(VERDE_LED, HIGH);
+    
+    delay(500);
+    
+  digitalWrite(AMARELO_LED, LOW);
+  digitalWrite(VERMELHO_LED, LOW);
+  digitalWrite(VERDE_LED, LOW);
+    
+    delay(500);
+  }
+  else
+    	estadoAtual = ESTADO_ACENDER_VERMELHO;
+}
+break;
+
+    
+    	break;
+  case ESTADO_TESTE_SEMAFORO:	{
+    break} ;
+  case ESTADO_ACENDER_VERMELHO:	{
+    break};
+  case ESTADO_ACENDER_AMARELO:	{
+    break} ;
+  case ESTADO_ACENDER_VERDE :	{
+    break} ;
+
+  digitalWrite(AMARELO_LED, HIGH);
+  delay(TEMPO_ESPERA_MS);
+  digitalWrite(AMARELO_LED, LOW);
+  digitalWrite(VERDE_LED, HIGH);
+  delay(TEMPO_ESPERA_MS);
+  digitalWrite(VERDE_LED, LOW);
+  digitalWrite(VERMELHO_LED, HIGH);
+  delay(TEMPO_ESPERA_MS);
+  digitalWrite(VERMELHO_LED, LOW);
+  
+}

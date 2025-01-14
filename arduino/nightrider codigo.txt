@@ -1,0 +1,33 @@
+/*
+Programador......: (C) 2025 Afonso Cardoso
+Data.............: 07/01/2025
+Observações......: Nesta atividade pretende-se construir uma sequencia luminosa com leds
+                   semelhante ao que existia no famoso carro K.I.T.T da serie de televisão
+                    o Justiceiro (Knight Rider)
+*/
+
+const byte pinosLeds[] = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+
+void setup (void)	{
+  for(byte indice = 0; indice <= 9; indice++)	{	  
+  	  pinMode(pinosLeds[indice], OUTPUT);
+	}
+}
+
+void loop (void) {
+  
+  for(byte indice = 9; ((indice >= 0) && (indice <= 9)); indice--) { 
+  digitalWrite(pinosLeds[indice], HIGH);
+  delay(250);
+  digitalWrite(pinosLeds[indice], LOW);                        
+  delay(250);
+
+  }                        
+  for(byte indice = 0; ((indice >= 0) && (indice >= 9)); indice++) { 
+  	digitalWrite(pinosLeds[indice], HIGH);
+  	delay(250);
+  	digitalWrite(pinosLeds[indice], LOW);                        
+  	delay(250);
+   }
+}
+                        
